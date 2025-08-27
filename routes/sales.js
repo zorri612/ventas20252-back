@@ -1,7 +1,7 @@
 import express from "express";
 import Sale from "../models/Sale.js";
 import jwt from "jsonwebtoken";
-import  {getDashboardStats } from "../controllers/ventaController.js";
+//  {getDashboardStats } from "../controllers/ventaController.js";
 
 const router = express.Router();
 
@@ -51,7 +51,5 @@ router.get("/", async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 });
-
-router.get("/ventas/dashboard", getDashboardStats);
 
 export default router;

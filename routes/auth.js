@@ -8,7 +8,7 @@ const router = express.Router();
 // Registro
 router.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ msg: "El usuario ya existe" });
@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role} = req.body;
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ msg: "Usuario no encontrado" });
@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token, user: { id: user._id, email: user.email } });
+    res.json({ token, user: { id: user._id, email: user.email, role: user.role } });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
