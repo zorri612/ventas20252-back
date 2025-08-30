@@ -10,7 +10,7 @@ router.get("/sales/last30days", async (req, res) => {
       {
         $match: {
           purchaseDate: {
-            $gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+            $gte: new Date(new Date().setDate(new Date().getDate() - 2)),
           },
         },
       },
